@@ -1,0 +1,212 @@
+{
+   "scoreboard": {
+      "headers": {
+         "main": [
+            {
+               "text": "Rank",
+               "value": "rank"
+            },
+            {
+               "text": "User",
+               "value": "name"
+            },
+            {
+               "text": "Score",
+               "value": "score"
+            }
+         ],
+         "problems": [
+            {
+               "text": "A",
+               "value": "a"
+            },
+            {
+               "text": "B",
+               "value": "b"
+            },
+            {
+               "text": "C",
+               "value": "c"
+            },
+            {
+               "text": "D",
+               "value": "d"
+            },
+            {
+               "text": "E",
+               "value": "e"
+            }
+         ]
+      },
+      "scores": [
+         {
+            "rank": 1,
+            "name": "Valera_Grinenko",
+            "score": 4,
+            "problems": {
+               "a": {
+                  "submissionTime": "00:26:34",
+                  "score": 1
+               },
+               "b": {
+                  "submissionTime": "00:54:56",
+                  "score": 3
+               },
+               "c": {
+                  "submissionTime": "00:46:50",
+                  "score": 2
+               },
+               "d": {},
+               "e": {
+                  "submissionTime": "00:19:42",
+                  "score": 3
+               }
+            }
+         },
+         {
+            "rank": 2,
+            "name": "inov_360",
+            "score": 4,
+            "problems": {
+               "a": {
+                  "submissionTime": "00:09:50",
+                  "score": 1
+               },
+               "b": {
+                  "submissionTime": "01:50:45",
+                  "score": 1
+               },
+               "c": {
+                  "submissionTime": "00:24:25",
+                  "score": 1
+               },
+               "d": {},
+               "e": {
+                  "submissionTime": "01:04:31",
+                  "score": 1
+               }
+            }
+         },
+         {
+            "rank": 3,
+            "name": "NOOBxCODER",
+            "score": 4,
+            "problems": {
+               "a": {
+                  "submissionTime": "00:08:25",
+                  "score": 1
+               },
+               "b": {
+                  "submissionTime": "01:04:52",
+                  "score": 1
+               },
+               "c": {
+                  "submissionTime": "00:35:06",
+                  "score": 1
+               },
+               "d": {},
+               "e": {
+                  "submissionTime": "01:27:33",
+                  "score": 1
+               }
+            }
+         },
+         {
+            "rank": 4,
+            "name": "utkarsh_25dec",
+            "score": 4,
+            "problems": {
+               "a": {
+                  "submissionTime": "00:14:16",
+                  "score": 1
+               },
+               "b": {
+                  "submissionTime": "01:34:47",
+                  "score": 1
+               },
+               "c": {
+                  "submissionTime": "00:41:19",
+                  "score": 1
+               },
+               "d": {},
+               "e": {
+                  "submissionTime": "01:19:45",
+                  "score": 1
+               }
+            }
+         },
+         {
+            "rank": 5,
+            "name": "utkarsh_25dec",
+            "score": 4,
+            "problems": {
+               "a": {
+                  "submissionTime": "00:09:26",
+                  "score": 1
+               },
+               "b": {
+                  "submissionTime": "01:44:33",
+                  "score": 1
+               },
+               "c": {
+                  "submissionTime": "00:31:26",
+                  "score": 1
+               },
+               "d": {},
+               "e": {
+                  "submissionTime": "00:55:44",
+                  "score": 1
+               }
+            }
+         },
+         {
+            "rank": 7,
+            "name": "utkarsh_25dec",
+            "score": 3,
+            "problems": {
+               "a": {
+                  "submissionTime": "00:09:49",
+                  "score": 1
+               },
+               "b": {
+                  "submissionTime": "00:00:00",
+                  "score": 0
+               },
+               "c": {
+                  "submissionTime": "00:22:35",
+                  "score": 1
+               },
+               "d": {},
+               "e": {
+                  "submissionTime": "01:01:28",
+                  "score": 1
+               }
+            }
+         },
+         {
+            "rank": 8,
+            "name": "shashwat259",
+            "score": 3,
+            "problems": {
+               "a": {
+                  "submissionTime": "00:11:07",
+                  "score": 1
+               },
+               "b": {
+                  "submissionTime": "00:00:00",
+                  "score": 0
+               },
+               "c": {
+                  "submissionTime": "00:27:07",
+                  "score": 1
+               },
+               "d": {},
+               "e": {
+                  "submissionTime": "01:01:58",
+                  "score": 1
+               }
+            }
+         }
+      ]
+   }
+}
