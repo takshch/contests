@@ -1,11 +1,14 @@
 <template>
-  <div>
     <v-data-table
       :headers="headers"
       :items="scores"
       :loading="loading"
       loading-text="Loading... Please wait"
+      class="mb-9 v-example v-sheet v-sheet--outlined theme--light rounded"
     >
+    <template v-slot:item.name="{ item }">
+      <span>{{ item.name }}</span>
+    </template>
       <template v-for="(slot, index) in slots" v-slot:[`item.${slot.value}`]="{ item }">
          <span :color="getScoreColor(slot.value)" :key="index">
             {{ item[slot.value].score }}
@@ -16,7 +19,6 @@
           </span>
       </template>
     </v-data-table>
-  </div>
 </template>
 
 <script lang="ts">
@@ -47,10 +49,6 @@ export default Vue.extend({
     },
   },
   methods: {
-    getVSlotName(value) {
-      console.log(value);
-      return `item.${value}`;
-    },
     getScoreColor(score: number) {
       let color;
       if (score === 1) {

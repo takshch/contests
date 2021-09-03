@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <Score-board />
+    <div class="flex">
+      <Score-board class="mx-auto mt-12" />
     </div>
 </template>
 
