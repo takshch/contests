@@ -50,16 +50,16 @@
                },
                "b": {
                   "submissionTime": "00:54:56",
-                  "score": 3
+                  "score": 1
                },
                "c": {
                   "submissionTime": "00:46:50",
-                  "score": 2
+                  "score": 1
                },
                "d": {},
                "e": {
                   "submissionTime": "00:19:42",
-                  "score": 3
+                  "score": 1
                }
             }
          },
@@ -181,6 +181,27 @@
                   "submissionTime": "01:01:28",
                   "score": 1
                }
+            }
+         },
+         {
+            "rank": 21,
+            "name": "Saksham_2000",
+            "score": 2,
+            "problems": {
+               "a": {
+                  "submissionTime": "00:11:35",
+                  "score": 1
+               },
+               "b": {
+                  "submissionTime": "00:00:00",
+                  "score": 0
+               },
+               "c": {
+                  "submissionTime": "00:43:20",
+                  "score": 1
+               },
+               "d": {},
+               "e": {}
             }
          },
          {
