@@ -7,16 +7,21 @@
       class="mb-9 v-example v-sheet v-sheet--outlined theme--light rounded"
     >
     <template v-slot:item.name="{ item }">
-      <span>{{ item.name }}</span>
+      {{ item.name }}
     </template>
       <template v-for="(slot, index) in slots" v-slot:[`item.${slot.value}`]="{ item }">
-         <span :color="getScoreColor(slot.value)" :key="index">
+        <span v-if="typeof item[slot.value].score === 'number'" :key="index">
+          <span :class="getScoreColor(item[slot.value].score)" class="fw-bold">
             {{ item[slot.value].score }}
           </span>
-          <br :key="index">
-          <span :key="index">
+          <br>
+          <span class="text-grey">
             {{ item[slot.value].submissionTime }}
           </span>
+        </span>
+        <span v-else :key="index">
+          -
+        </span>
       </template>
     </v-data-table>
 </template>
@@ -42,7 +47,9 @@ export default Vue.extend({
     },
     headers() {
       const scoreboard = this.$store.getters.getScoreboard;
-      return [...scoreboard.headers.main, ...scoreboard.headers.problems] || [];
+      let headers = [...scoreboard.headers.main, ...scoreboard.headers.problems] || [];
+      headers = headers.map((header) => ({ ...header, align: 'center' }));
+      return headers;
     },
     loading() {
       return this.$store.getters.getLoadingStatus;
@@ -50,15 +57,28 @@ export default Vue.extend({
   },
   methods: {
     getScoreColor(score: number) {
-      let color;
-      if (score === 1) {
-        color = 'green';
-      } else if (score === 0) {
-        color = 'red';
-      }
+      const dyanmiClasses = {
+        'text-green': score === 1,
+        'text-red': score === 0,
+      };
 
-      return color;
+      return dyanmiClasses;
     },
   },
 });
 </script>
+
+<style scoped>
+.fw-bold {
+  font-weight: bold !important;
+}
+.text-grey {
+  color: #9e9e9e!important;
+}
+.text-green {
+  color: #4caf50 !important;
+}
+.text-red {
+  color: #f44336 !important;
+}
+</style>
