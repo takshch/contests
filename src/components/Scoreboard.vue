@@ -1,10 +1,31 @@
 <template>
+  <v-card>
+    <v-card>
+      <v-col
+        class="ml-auto my-auto"
+        cols="12"
+        sm="6"
+        md="3"
+      >
+        <v-row>
+          <v-text-field
+              label="Full name"
+              single-line
+              outlined
+              v-model="search"
+          >
+          </v-text-field>
+        </v-row>
+      </v-col>
+    </v-card>
     <v-data-table
       :headers="headers"
       :items="scores"
       :loading="loading"
       loading-text="Loading... Please wait"
       class="mb-9 v-example v-sheet v-sheet--outlined theme--light rounded"
+      :search="search"
+      :custom-filter="filterByName"
     >
     <template v-slot:item.name="{ item }">
       {{ item.name }}
@@ -24,6 +45,7 @@
         </span>
       </template>
     </v-data-table>
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -31,6 +53,11 @@ import Vue from 'vue';
 
 export default Vue.extend({
   name: 'Scoreboard',
+  data() {
+    return {
+      search: '',
+    };
+  },
   computed: {
     scores() {
       let { scores } = this.$store.getters.getScoreboard;
@@ -63,6 +90,11 @@ export default Vue.extend({
       };
 
       return dyanmiClasses;
+    },
+    filterByName(value, search, item) {
+      console.log(value, search, item);
+      return value != null && search != null
+      && typeof value === 'string' && value.toString().toLowerCase().indexOf(search) !== -1;
     },
   },
 });
