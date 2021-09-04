@@ -9,10 +9,10 @@
       >
         <v-row>
           <v-text-field
-              label="Full name"
-              single-line
-              outlined
-              v-model="search"
+            label="Full name"
+            single-line
+            outlined
+            v-model="search"
           >
           </v-text-field>
         </v-row>
@@ -45,18 +45,13 @@
       {{ item.name }}
     </template>
       <template v-for="(slot, index) in slots" v-slot:[`item.${slot.value}`]="{ item }">
-        <span v-if="typeof item[slot.value].score === 'number'" :key="index">
-          <span :class="getScoreColor(item[slot.value].score)" class="fw-bold">
-            {{ item[slot.value].score }}
-          </span>
-          <br>
-          <span class="text-grey">
-            {{ item[slot.value].submissionTime }}
-          </span>
-        </span>
-        <span v-else :key="index">
-          -
-        </span>
+        <ScoreItem
+          :key="index"
+          :score="item[slot.value].score"
+          :id="item[slot.value].id"
+          :submissionTime="item[slot.value].submissionTime"
+        >
+        </ScoreItem>
       </template>
     </v-data-table>
   </v-card>
@@ -64,8 +59,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import ScoreItem from '@/components/ScoreItem.vue';
 
 export default Vue.extend({
+  components: {
+    ScoreItem,
+  },
   name: 'Scoreboard',
   data() {
     return {
@@ -97,16 +96,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    getScoreColor(score: number) {
-      const dyanmiClasses = {
-        'text-green': score === 1,
-        'text-red': score === 0,
-      };
-
-      return dyanmiClasses;
-    },
     filterByName(value, search, item) {
-      console.log(value, search, item);
       return value != null && search != null
       && typeof value === 'string' && value.toString().toLowerCase().indexOf(search) !== -1;
     },
@@ -114,12 +104,12 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped>
+<style>
 .fw-bold {
   font-weight: bold !important;
 }
 .text-grey {
-  color: #9e9e9e!important;
+  color: #9e9e9e !important;
 }
 .text-green {
   color: #4caf50 !important;
