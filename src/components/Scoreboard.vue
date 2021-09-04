@@ -27,6 +27,20 @@
       :search="search"
       :custom-filter="filterByName"
     >
+      <template v-slot:item.score="{ item }">
+        <span>
+          <span
+            v-if="typeof item.score === 'number'"
+            class="fw-bold"
+          >
+            {{ item.score }}
+          </span>
+          <br>
+          <span v-if="typeof item.totalTime === 'string'" class="text-grey">
+            {{ item.totalTime }}
+          </span>
+        </span>
+      </template>
     <template v-slot:item.name="{ item }">
       {{ item.name }}
     </template>
