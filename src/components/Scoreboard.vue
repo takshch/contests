@@ -91,7 +91,7 @@ export default Vue.extend({
       headers = headers.map((header) => ({ ...header, align: 'center' }));
       return headers;
     },
-    loading() {
+    isLoading() {
       return this.$store.getters.getLoadingStatus;
     },
   },

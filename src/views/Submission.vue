@@ -1,20 +1,32 @@
 <template>
   <div class="flex">
-    <template v-if="isLoading === false">
-      <v-card>
-        <v-card-title>Submission: {{ submission.id }}</v-card-title>
-        <v-data-table
-          :headers="headers"
-          :items="submission"
-          hide-default-footer
-          disable-sort
-        >
-          <template v-slot:items="props">
-            <td>{{ props.item.name }}</td>
-          </template>
-        </v-data-table>
-      </v-card>
-    </template>
+    <div class="mx-auto">
+      <template v-if="isLoading">
+        <v-skeleton-loader
+          class=""
+          min-width="300"
+          max-width="1000"
+          type="card"
+        ></v-skeleton-loader>
+      </template>
+      <template v-else>
+        <v-card>
+          <v-card-title>Submission: {{ submission.id }}</v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="submission"
+            hide-default-footer
+            disable-sort
+          >
+            <template v-slot:item.problem="{ item }">
+              <a :href="item.problem.link" class="underline">
+                {{ item.problem.text }}
+              </a>
+            </template>
+          </v-data-table>
+        </v-card>
+      </template>
+    </div>
   </div>
 </template>
 
