@@ -6,9 +6,14 @@ Vue.use(Vuex);
 const baseURL = 'http://localhost:3000';
 
 const loadingContainer = (state) => async (Func, ...args) => {
-  state.commit('setLoadingStatus', true);
-  await Func(...args);
-  state.commit('setLoadingStatus', false);
+  try {
+    state.commit('setLoadingStatus', true);
+    await Func(...args);
+  } catch (e) {
+    console.error(e);
+  } finally {
+    state.commit('setLoadingStatus', false);
+  }
 };
 
 export default new Vuex.Store({
@@ -33,13 +38,11 @@ export default new Vuex.Store({
   },
   actions: {
     async setScoreboard(state) {
-      state.commit('setLoadingStatus', true);
-
-      const res = await fetch(`${baseURL}/scoreboard`);
-      const scoreboard = await res.json();
-
-      state.commit('setScoreboard', scoreboard);
-      state.commit('setLoadingStatus', false);
+      loadingContainer(state)(async () => {
+        const res = await fetch(`${baseURL}/scoreboard`);
+        const scoreboard = await res.json();
+        state.commit('setScoreboard', scoreboard);
+      });
     },
     async setSubmission(state, { id }) {
       loadingContainer(state)(async () => {

@@ -74,7 +74,7 @@ export default Vue.extend({
   computed: {
     scores() {
       let { scores } = this.$store.getters.getScoreboard;
-      scores = scores.map((score: object) => {
+      scores = scores.map((score) => {
         const newScore = { ...score, ...score.problems };
         delete newScore.problems;
         return newScore;

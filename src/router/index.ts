@@ -11,6 +11,7 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Home',
     component: Home,
+    redirect: '/scoreboard',
   },
   {
     path: '/about',
