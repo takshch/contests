@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
-import Scoreboard from '../views/Scoreboard.vue';
+import Scoreboard from '@/views/Scoreboard.vue';
+import Submission from '@/views/Submission.vue';
 
 Vue.use(VueRouter);
 
@@ -23,6 +24,11 @@ const routes: Array<RouteConfig> = [
     path: '/scoreboard',
     name: 'Scoreboard',
     component: Scoreboard,
+  },
+  {
+    path: '/submission/:id',
+    name: 'Submission',
+    component: Submission,
   },
 ];
 
