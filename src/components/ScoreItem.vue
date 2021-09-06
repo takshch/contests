@@ -24,11 +24,9 @@ export default Vue.extend({
   props: ['score', 'submissionTime', 'id'],
   computed: {
     tagName() {
-      console.log(this.id);
       return typeof this.id === 'number' ? 'router-link' : 'span';
     },
     routeLink() {
-      console.log(this.id);
       return typeof this.id === 'number' ? `/submission/${this.id}` : null;
     },
   },

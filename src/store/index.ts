@@ -5,12 +5,12 @@ Vue.use(Vuex);
 
 const baseURL = 'http://localhost:3000';
 
-const loadingContainer = (state) => async (Func, ...args) => {
+const loadingContainer = (state) => async (func, ...args) => {
   try {
     state.commit('setLoadingStatus', true);
-    await Func(...args);
+    await func(...args);
   } catch (e) {
-    console.error(e);
+    state.commit('setErrorMessage', e);
   } finally {
     state.commit('setLoadingStatus', false);
   }
@@ -21,19 +21,26 @@ export default new Vuex.Store({
     scoreboard: {},
     loadingStatus: false,
     subsmissions: {},
+    errorMessage: '',
   },
   mutations: {
     setScoreboard(state, payload) {
       state.scoreboard = payload;
     },
     setSubmission(state, payload) {
-      console.log(payload);
       const { id } = payload;
       Vue.set(state.subsmissions, id, payload);
     },
     setLoadingStatus(state, payload) {
       state.loadingStatus = payload;
-      console.log('loadingStatus', state.loadingStatus);
+    },
+    setErrorMessage(state, payload) {
+      const p = payload.toString();
+      let errorMessage;
+      if (p && p.toLowerCase().includes('failed to fetch')) {
+        errorMessage = 'Error: Failed to fetch';
+      }
+      state.errorMessage = errorMessage;
     },
   },
   actions: {
@@ -46,7 +53,7 @@ export default new Vuex.Store({
     },
     async setSubmission(state, { id }) {
       loadingContainer(state)(async () => {
-        const res = await fetch(`${baseURL}/submissions/${id}`);
+        const res = await fetch(`${baseURL}/submission/${id}`);
         const submission = await res.json();
         state.commit('setSubmission', submission);
       });
@@ -56,6 +63,7 @@ export default new Vuex.Store({
     getScoreboard: (state) => state.scoreboard,
     getLoadingStatus: (state) => state.loadingStatus,
     getSubmission: (state) => (id: string | number) => state.subsmissions[id],
+    getErrorMessage: (state) => state.errorMessage,
   },
   modules: {},
 });

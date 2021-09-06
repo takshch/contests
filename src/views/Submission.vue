@@ -55,7 +55,7 @@ export default Vue.extend({
       return this.submission[0].testCases;
     },
   },
-  mounted() {
+  async mounted() {
     this.$store.dispatch('setSubmission', {
       id: parseInt(this.$route.params.id, 10),
     });

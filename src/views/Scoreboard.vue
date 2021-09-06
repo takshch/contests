@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import Vue from 'vue';
-
 import ScoreboardTable from '@/components/ScoreboardTable.vue';
 
 export default Vue.extend({
@@ -42,7 +41,6 @@ export default Vue.extend({
           return newScore;
         });
       }
-      console.log('scores', scores);
       return scores;
     },
     slots() {
