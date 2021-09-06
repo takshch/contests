@@ -1,11 +1,31 @@
 <template>
   <div class="flex">
     <div class="mx-auto">
-     <SubmissionDetails :isLoading="isLoading" :submission="submission">
-     </SubmissionDetails>
-     <br>
-     <TestCasesTable :testCases="testCases" :isLoading="isLoading">
-     </TestCasesTable>
+      <template>
+        <v-skeleton-loader
+            class="loader-list-item"
+            min-width="300"
+            max-width="1000"
+            min-height="80"
+            type="list-item"
+            v-if="isLoading"
+          ></v-skeleton-loader>
+        <SubmissionDetails v-else :submission="submission">
+        </SubmissionDetails>
+      </template>
+      <br>
+      <template>
+        <v-skeleton-loader
+          class="loader-list-item"
+          min-width="300"
+          max-width="1000"
+          min-height="80"
+          type="list-item"
+          v-if="isLoading"
+        ></v-skeleton-loader>
+        <TestCasesTable v-else :testCases="testCases" :isLoading="isLoading">
+        </TestCasesTable>
+      </template>
     </div>
   </div>
 </template>

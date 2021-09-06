@@ -1,22 +1,36 @@
 <template>
     <div class="flex">
-      <ScoreboardTable class="mx-auto mt-12"
-        :scores="scores"
-        :slots="slots"
-        :headers="headers"
-        :isLoading="isLoading"
-      >
-      </ScoreboardTable>
+      <div class="mx-auto">
+        <template>
+          <vue-skeleton-loader
+            v-if="isLoading"
+            type="rect"
+            :width="300"
+            :height="50"
+            animation="wave"
+          />
+          <ScoreboardTable class="mx-auto mt-12"
+            :scores="scores"
+            :slots="slots"
+            :headers="headers"
+            v-else
+          >
+          </ScoreboardTable>
+        </template>
+      </div>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+
+import VueSkeletonLoader from 'skeleton-loader-vue';
 import ScoreboardTable from '@/components/ScoreboardTable.vue';
 
 export default Vue.extend({
   name: 'Scoreboard',
   components: {
+    VueSkeletonLoader,
     ScoreboardTable,
   },
   computed: {
