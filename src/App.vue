@@ -2,8 +2,8 @@
   <v-app>
     <v-main>
       <router-view/>
+      <ErrorHandler />
     </v-main>
-    <ErrorHandler />
   </v-app>
 </template>
 

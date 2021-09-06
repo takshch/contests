@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -10,6 +11,7 @@ const loadingContainer = (state) => async (func, ...args) => {
     state.commit('setLoadingStatus', true);
     await func(...args);
   } catch (e) {
+    console.error(e);
     state.commit('setErrorMessage', e);
   } finally {
     state.commit('setLoadingStatus', false);
@@ -36,26 +38,21 @@ export default new Vuex.Store({
     },
     setErrorMessage(state, payload) {
       const p = payload.toString();
-      let errorMessage;
-      if (p && p.toLowerCase().includes('failed to fetch')) {
-        errorMessage = 'Error: Failed to fetch';
-      }
-      state.errorMessage = errorMessage;
+      state.errorMessage = p;
     },
   },
   actions: {
     async setScoreboard(state) {
       loadingContainer(state)(async () => {
-        const res = await fetch(`${baseURL}/scoreboard`);
-        const scoreboard = await res.json();
-        state.commit('setScoreboard', scoreboard);
+        const scoreboard = await axios.get(`${baseURL}/scoreboard`);
+        state.commit('setScoreboard', scoreboard.data);
       });
     },
     async setSubmission(state, { id }) {
       loadingContainer(state)(async () => {
-        const res = await fetch(`${baseURL}/submission/${id}`);
-        const submission = await res.json();
-        state.commit('setSubmission', submission);
+        const submission = await axios.get(`${baseURL}/submissions/${id}`);
+        console.log(submission);
+        state.commit('setSubmission', submission.data);
       });
     },
   },
