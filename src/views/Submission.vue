@@ -3,7 +3,7 @@
     <div class="mx-auto">
       <template>
         <v-skeleton-loader
-            class="loader-list-item"
+            class="loader-list-item my-5"
             min-width="300"
             max-width="1000"
             min-height="80"

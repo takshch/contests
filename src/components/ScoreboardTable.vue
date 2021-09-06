@@ -1,13 +1,13 @@
 <template>
   <v-card>
     <v-card-title>
-      <v-col
+      <v-row
+        no-gutters
         class="ml-auto my-auto"
         cols="12"
-        sm="6"
-        md="3"
+        sm="4"
       >
-        <v-row>
+        <v-col>
           <v-text-field
             label="Full name"
             single-line
@@ -15,8 +15,8 @@
             v-model="search"
           >
           </v-text-field>
-        </v-row>
-      </v-col>
+        </v-col>
+      </v-row>
     </v-card-title>
     <v-data-table
       :headers="headers"
