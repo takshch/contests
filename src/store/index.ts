@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-const baseURL = 'http://localhost:3000';
+const baseURL = '/mockapi';
 
 const loadingContainer = (state) => async (func, ...args) => {
   try {
@@ -44,13 +44,13 @@ export default new Vuex.Store({
   actions: {
     async setScoreboard(state) {
       loadingContainer(state)(async () => {
-        const scoreboard = await axios.get(`${baseURL}/scoreboard`);
+        const scoreboard = await axios.get(`${baseURL}/scoreboard.json`);
         state.commit('setScoreboard', scoreboard.data);
       });
     },
     async setSubmission(state, { id }) {
       loadingContainer(state)(async () => {
-        const submission = await axios.get(`${baseURL}/submissions/${id}`);
+        const submission = await axios.get(`${baseURL}/submissions/${id}.json`);
         console.log(submission);
         state.commit('setSubmission', submission.data);
       });

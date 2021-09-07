@@ -14,6 +14,8 @@
         </SubmissionDetails>
       </template>
       <br>
+      <CodeEditor :code="code" />
+      <br>
       <template>
         <v-skeleton-loader
           class="loader-list-item"
@@ -34,11 +36,13 @@
 import Vue from 'vue';
 import { mapGetters } from 'vuex';
 import SubmissionDetails from '@/components/SubmissionDetails.vue';
+import CodeEditor from '@/components/CodeEditor.vue';
 import TestCasesTable from '@/components/TestCasesTable.vue';
 
 export default Vue.extend({
   components: {
     SubmissionDetails,
+    CodeEditor,
     TestCasesTable,
   },
   name: 'Submission',
@@ -46,6 +50,9 @@ export default Vue.extend({
     ...mapGetters(['getLoadingStatus', 'getSubmission']),
     isLoading() {
       return this.getLoadingStatus;
+    },
+    code() {
+      return this.submission[0].code;
     },
     submission() {
       const id = parseInt(this.$route.params.id, 10);

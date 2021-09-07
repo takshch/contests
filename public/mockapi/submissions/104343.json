@@ -1,0 +1,58 @@
+{
+  "id": 104343,
+  "submittedOn": "30/07/2021, 17:26:34",
+  "name": "Valera_Grinenko",
+  "problem": {
+    "link": "https://codedrills.io/problems/max-wins",
+    "text": "Max Wins"
+  },
+  "language": "C++",
+  "status": true,
+  "time": "280 ms",
+  "memory": "106736 KiB",
+  "testCases": [
+    {
+      "id": 0,
+      "status": true,
+      "time": "0 ms",
+      "memory": "7504 KiB"
+    },
+    {
+      "id": 1,
+      "status": true,
+      "time": "60 ms",
+      "memory": "8512 KiB"
+    },
+    {
+      "id": 2,
+      "status": true,
+      "time": "120 ms",
+      "memory": "13408 KiB"
+    },
+    {
+      "id": 3,
+      "status": true,
+      "time": "140 ms",
+      "memory": "13792 KiB"
+    },
+    {
+      "id": 4,
+      "status": true,
+      "time": "70 ms",
+      "memory": "13856 KiB"
+    },
+    {
+      "id": 5,
+      "status": true,
+      "time": "180 ms",
+      "memory": "63680 KiB"
+    },
+    {
+      "id": 6,
+      "status": true,
+      "time": "280 ms",
+      "memory": "7504 KiB"
+    }
+  ],
+  "code": "#pragma GCC optimize(\"Ofast\")\n#pragma GCC target(\"avx,avx2,fma\")\n#pragma GCC optimization (\"unroll-loops\")\n#include <iostream>\n#include <fstream>\n#include <algorithm>\n#include <vector>\n#include <set>\n#include <stack>\n#include <map>\n#include <unordered_map>\n#include <iomanip>\n#include <cmath>\n#include <queue>\n#include <bitset>\n#include <numeric>\n#include <array>\n#include <cstring>\n#include <random>\n#include <chrono>\n#define fi first\n#define se second\n#define pb push_back\n#define mp make_pair\n#define all(x) (x).begin(), (x).end()\n#define rall(x) (x).rbegin(), (x).rend()\n#define make_unique(x) sort(all((x))); (x).resize(unique(all((x))) - (x).begin())\ntypedef long long ll;\ntypedef long double ld;\nusing namespace std;\nmt19937 rng(chrono::steady_clock::now().time_since_epoch().count());\n// #include <ext/pb_ds/assoc_container.hpp>\n// #include <ext/pb_ds/tree_policy.hpp>\n// using namespace __gnu_pbds;\n// template<clashttps://www.instagram.com/mrplcity.fest/?hl=ruhttps://www.instagram.com/mrplcity.fest/?hl=rus T>\n// using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;\nint main() {\n\n  ios::sync_with_stdio(0); cin.tie(0); cout.tie(0);\n\n  int t = 0;\n\n  cin >> t;\n\n  while(t--) {\n    int n; cin >> n;\n    map<int, vector<int> > pos;\n    map<int, int> am;\n    for(int i = 0; i < n; i++) {\n      int a; cin >> a; pos[a].pb(i); am[a]++;\n    }\n    vector<int> ans(n);\n    int cam = 0, cans = 0, cneed = 0;\n    for(auto& x : am) {\n      cam += x.se;\n      while((1 << (cans + 1)) <= cam) cans++;\n      for(auto& xx : pos[x.fi]) ans[xx] = cans;\n    }\n    for(int i = 0; i < n; i++) cout << ans[i] << ' ';\n    cout << '\\n';\n  }\n\n  return 0;\n}\n/*\n\n*/\n"
+}
