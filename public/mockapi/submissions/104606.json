@@ -1,0 +1,76 @@
+{
+  "id": 104606,
+  "submittedOn": "30/07/2021, 18:04:31",
+  "name": "inov_360",
+  "problem": {
+    "link": "https://codedrills.io/problems/bus-travel",
+    "text": "Bus Travel"
+  },
+  "language": "C++",
+  "status": true,
+  "time": "200 ms",
+  "memory": "76048 KiB",
+  "testCases": [
+    {
+      "id": 0,
+      "status": true,
+      "time": "0 ms",
+      "memory": "7552 KiB"
+    },
+    {
+      "id": 1,
+      "status": true,
+      "time": "140 ms",
+      "memory": "72672 KiB"
+    },
+    {
+      "id": 2,
+      "status": true,
+      "time": "170 ms",
+      "memory": "73936 KiB"
+    },
+    {
+      "id": 3,
+      "status": true,
+      "time": "190 ms",
+      "memory": "76048 KiB"
+    },
+    {
+      "id": 4,
+      "status": true,
+      "time": "180 ms",
+      "memory": "74768 KiB"
+    },
+    {
+      "id": 5,
+      "status": true,
+      "time": "160 ms",
+      "memory": "74976 KiB"
+    },
+    {
+      "id": 6,
+      "status": true,
+      "time": "190 ms",
+      "memory": "75888 KiB"
+    },
+    {
+      "id": 7,
+      "status": true,
+      "time": "170 ms",
+      "memory": "75904 KiB"
+    },
+    {
+      "id": 8,
+      "status": true,
+      "time": "200 ms",
+      "memory": "76000 KiB"
+    },
+    {
+      "id": 9,
+      "status": true,
+      "time": "200 ms",
+      "memory": "75872 KiB"
+    }
+  ],
+  "code": "#include<bits/stdc++.h>\nusing namespace std;\n\n#include <ext/pb_ds/assoc_container.hpp> \n#include <ext/pb_ds/tree_policy.hpp> \nusing namespace __gnu_pbds; \n\n#define ll long long\n#define db double\n#define el \"\\n\"\n#define ld long double\n#define rep(i,n) for(int i=0;i<n;i++)\n#define rev(i,n) for(int i=n;i>=0;i--)\n#define rep_a(i,a,n) for(int i=a;i<n;i++)\n#define all(ds) ds.begin(), ds.end()\n#define ff first\n#define ss second\n#define pb push_back\n#define mp make_pair\ntypedef vector< long long > vi;\ntypedef pair<long long, long long> ii;\ntypedef priority_queue <ll> pq;\n#define o_set tree<ll, null_type,less<ll>, rb_tree_tag,tree_order_statistics_node_update> \n\nconst ll mod = 1000000007;\nconst ll INF = (ll)1e18;\nconst ll MAXN = 1000006;\n\nll po(ll x, ll n){ \n    ll ans=1;\n    while(n>0){ if(n&1) ans=(ans*x)%mod; x=(x*x)%mod; n/=2;}\n    return ans;\n}\n\n\nint main(){\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n    cout.tie(0);\n  \n    int T=1;\n    //cin >> T;\n    while(T--){\n        \n        ll n,m,q;\n        cin>>n>>m>>q;\n\n        vector<ii> v;\n        ll l,r;\n        rep(i,m){\n            cin>>l>>r;\n            v.pb(mp(l,r));\n        }\n\n        sort(all(v));\n       \n        set<ll> s;\n\n        vi z(n+5, -1);\n\n        int j = 0;\n        rep(i,n+1){\n            while(!s.empty() && *(s.begin())<=i) s.erase(s.begin());\n            while(j<m && v[j].ff<=i){\n                s.insert(v[j].ss);\n                j++;\n            }\n\n            if(s.empty()) z[i] = -1;\n            else{\n                z[i] = *(s.rbegin());\n            }\n        }\n\n        vector<vector<int> > dp(n+1,vector<int>(21, -1));\n\n        rep(i,n+1){\n            dp[i][0] = z[i];\n        }\n\n        rep_a(j,1,21){\n            rep(i,n+1){\n                if(dp[i][j-1]==-1){\n                    dp[i][j]=-1;\n                    continue;\n                }\n                //cout<<dp[i][j-1]<<el;\n                dp[i][j] = dp[dp[i][j-1]][j-1];\n            }\n        }\n\n        rep(i,q){\n            cin>>l>>r;\n            if(l>r) swap(l,r);\n            if(l==r){\n                cout<<0<<el;\n                continue;\n            }\n\n            int ans = 0;\n            int c = l;\n            rev(j,20){\n                if(dp[c][j]==-1 || dp[c][j]>=r) continue;\n                else{\n                    ans += (1<<j);\n                    c = dp[c][j];\n                }\n            }\n\n            if(dp[c][0]<r) cout<<-1<<el;\n            else cout<<ans+1<<el;\n        }\n\n    \n    }\n    cerr << \"Time : \" << 1000 * ((double)clock()) / (double)CLOCKS_PER_SEC << \"ms\\n\";\n    return 0;\n}"
+}

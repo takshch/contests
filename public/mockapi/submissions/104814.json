@@ -1,0 +1,70 @@
+{
+  "id": 104814,
+  "submittedOn": "30/07/2021, 18:50:45",
+  "name": "inov_360",
+  "problem": {
+    "link": "https://codedrills.io/problems/make-furniture",
+    "text": "Make Furniture"
+  },
+  "language": "C++",
+  "status": true,
+  "time": "150 ms",
+  "memory": "17968 KiB",
+  "testCases": [
+    {
+      "id": 0,
+      "status": true,
+      "time": "0 ms",
+      "memory": "7536 KiB"
+    },
+    {
+      "id": 1,
+      "status": true,
+      "time": "0 ms",
+      "memory": "7520 KiB"
+    },
+    {
+      "id": 2,
+      "status": true,
+      "time": "60 ms",
+      "memory": "7648 KiB"
+    },
+    {
+      "id": 3,
+      "status": true,
+      "time": "110 ms",
+      "memory": "17792 KiB"
+    },
+    {
+      "id": 4,
+      "status": true,
+      "time": "130 ms",
+      "memory": "8624 KiB"
+    },
+    {
+      "id": 5,
+      "status": true,
+      "time": "50 ms",
+      "memory": "7648 KiB"
+    },
+    {
+      "id": 6,
+      "status": true,
+      "time": "150 ms",
+      "memory": "8720 KiB"
+    },
+    {
+      "id": 7,
+      "status": true,
+      "time": "100 ms",
+      "memory": "17968 KiB"
+    },
+    {
+      "id": 8,
+      "status": true,
+      "time": "0 ms",
+      "memory": "7536 KiB"
+    }
+  ],
+  "code": "#include<bits/stdc++.h>\nusing namespace std;\n\n#include <ext/pb_ds/assoc_container.hpp> \n#include <ext/pb_ds/tree_policy.hpp> \nusing namespace __gnu_pbds; \n\n#define ll long long\n#define db double\n#define el \"\\n\"\n#define ld long double\n#define rep(i,n) for(int i=0;i<n;i++)\n#define rev(i,n) for(int i=n;i>=0;i--)\n#define rep_a(i,a,n) for(int i=a;i<n;i++)\n#define all(ds) ds.begin(), ds.end()\n#define ff first\n#define ss second\n#define pb push_back\n#define mp make_pair\ntypedef vector< long long > vi;\ntypedef pair<long long, long long> ii;\ntypedef priority_queue <ll> pq;\n#define o_set tree<ll, null_type,less<ll>, rb_tree_tag,tree_order_statistics_node_update> \n\nconst ll mod = 1000000007;\nconst ll INF = (ll)1e18;\nconst ll MAXN = 1000006;\n\nll po(ll x, ll n){ \n    ll ans=1;\n    while(n>0){ if(n&1) ans=(ans*x)%mod; x=(x*x)%mod; n/=2;}\n    return ans;\n}\n\n\nint main(){\n    ios_base::sync_with_stdio(false);\n    cin.tie(0);\n    cout.tie(0);\n\n    int T=1;\n    cin >> T;\n    while(T--){\n    \n        int n;\n        cin>>n;\n        ll a[n];\n        rep(i,n) cin>>a[i];\n\n        ll l=0, r = 1e15;\n        ll tmp, tmp1;\n        while(l<r){\n            ll m = (l+r+1)/2;\n            vector<ii> v;\n            ll cnt = 0;\n            ll ch = 0;\n            rep(i,n){\n                v.pb(mp(a[i]/3, a[i]%3));\n                cnt+=a[i]/3;\n                if(v.back().ss==2){\n                    ch++;\n                    v.back().ss=0;\n                }\n            }\n            if(cnt<m){\n                r=m-1;\n                continue;\n            }\n\n            rep(i,n){\n                if(ch>=m) break;\n                if(v[i].ss==1 && v[i].ff){\n                    cnt--;\n                    ch+=2;\n                    v[i].ff--;\n                    v[i].ss=0;\n                }\n                if(cnt<m || ch>=m) break;\n            }\n\n            if(cnt>=m && ch>=m){\n                l=m;\n                continue;\n            }\n\n            int j=0;\n            while(ch<m && cnt>=m && j<n){\n                tmp = v[j].ff/2;\n                tmp*=3;\n                if(ch+tmp>=m){\n                    tmp1=(((m-ch)/3)*2);\n                    cnt-=tmp1;\n                    ch+=(tmp1/2)*3;\n                }\n                else{\n                    cnt-=((tmp/3)*2);\n                    ch+=tmp;\n                }\n                j++;\n            }\n\n            tmp = max(cnt-m, 0ll);\n            ch+=tmp;\n            if(cnt>=m && ch>=m){\n                l=m;\n            }\n            else r=m-1;\n\n        }\n        cout<<l<<el;\n\n\n    }\n    cerr << \"Time : \" << 1000 * ((double)clock()) / (double)CLOCKS_PER_SEC << \"ms\\n\";\n    return 0;\n}"
+}
