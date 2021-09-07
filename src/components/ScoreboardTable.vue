@@ -70,7 +70,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    filterByName(value, search, item) {
+    filterByName(value, search) {
       return value != null && search != null
       && typeof value === 'string' && value.toString().indexOf(search) !== -1;
     },

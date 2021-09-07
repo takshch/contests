@@ -21,7 +21,13 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/clike/clike';
 
 export default Vue.extend({
-  props: ['code'],
+  props: {
+    code: {
+      type: String,
+      default: () => '/*Here is your code...*/',
+      required: true,
+    },
+  },
   mounted() {
     CodeMirror(document.getElementById('code-editor'), {
       lineNumbers: true,

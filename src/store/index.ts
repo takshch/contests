@@ -51,7 +51,6 @@ export default new Vuex.Store({
     async setSubmission(state, { id }) {
       loadingContainer(state)(async () => {
         const submission = await axios.get(`${baseURL}/submissions/${id}.json`);
-        console.log(submission);
         state.commit('setSubmission', submission.data);
       });
     },
