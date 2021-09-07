@@ -14,7 +14,7 @@
         </SubmissionDetails>
       </template>
       <br>
-      <CodeEditor :code="code" />
+      <CodeEditor :code="submission[0].code" />
       <br>
       <template>
         <v-skeleton-loader
@@ -25,7 +25,7 @@
           type="list-item"
           v-if="isLoading"
         ></v-skeleton-loader>
-        <TestCasesTable v-else :testCases="testCases" :isLoading="isLoading">
+        <TestCasesTable v-else :testCases="submission[0].testCases" :isLoading="isLoading">
         </TestCasesTable>
       </template>
     </div>
@@ -51,15 +51,9 @@ export default Vue.extend({
     isLoading() {
       return this.getLoadingStatus;
     },
-    code() {
-      return this.submission[0].code;
-    },
     submission() {
       const id = parseInt(this.$route.params.id, 10);
       return [this.getSubmission(id)];
-    },
-    testCases() {
-      return this.submission[0].testCases;
     },
   },
   async mounted() {

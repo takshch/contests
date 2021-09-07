@@ -14,22 +14,20 @@ const routes: Array<RouteConfig> = [
     redirect: '/scoreboard',
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
-  {
     path: '/scoreboard',
     name: 'Scoreboard',
     component: Scoreboard,
+    meta: {
+      title: 'Scoreboard',
+    },
   },
   {
     path: '/submission/:id',
     name: 'Submission',
     component: Submission,
+    meta: {
+      title: 'Submission',
+    },
   },
 ];
 
@@ -37,6 +35,11 @@ const router = new VueRouter({
   mode: 'hash',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
 });
 
 export default router;
