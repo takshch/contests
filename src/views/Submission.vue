@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex my-10">
     <div class="mx-auto">
       <template>
         <v-skeleton-loader

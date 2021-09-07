@@ -5,6 +5,7 @@
       <v-spacer />
       <v-btn
         elevation="2"
+        @click="copyCode"
       >
       Copy
       </v-btn>
@@ -28,6 +29,11 @@ export default Vue.extend({
       mode: 'text/x-csrc',
       value: this.code,
     });
+  },
+  methods: {
+    async copyCode() {
+      await navigator.clipboard.writeText(this.code);
+    },
   },
 });
 </script>
